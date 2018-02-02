@@ -1,0 +1,82 @@
+<!-- Description - Handle Width on three seprate-block, for matching with Newspaper-layout, without column-count: 1, 2, 3 as per mobile first approach -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>3 responsive block</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        @media only screen and (min-width: 600px) {
+            .container {
+                width: calc((100% / 2) - 10px);
+                float: left;
+                margin-right: 20px;
+            }
+            .third {
+                width: calc((100% / 2) - 10px);
+                float: left;
+            }
+        }
+        
+        @media only screen and (min-width: 768px) {
+            .container {
+                width: calc((200% / 3) - calc(272px / 3) + 136px);
+                float: left;
+                margin-right: 0;
+            }
+            .first {
+                padding-right: 68px;
+                width: 50%;
+                float: left;
+                box-sizing: border-box;
+            }
+            .second {
+                padding-right: 68px;
+                box-sizing: border-box;
+                width: 50%;
+                float: left;
+            }
+            .third {
+                width: calc((100% / 3) - calc(136px / 3));
+                float: left;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="first">
+            <h2>Hotel Highlights</h2>
+            <ul>
+                <li>Good arrangement of front floor</li>
+                <li>Intersting welcome with garland</li>
+                <li>Welcoming Nature</li>
+            </ul>
+        </div>
+        <div class="second">
+            <h2>Parking and Transportation</h2>
+            <ul>
+                <li>Dgjfdg Good arrangement of floor</li>
+                <li>Tfgdfgfdg welcome with garland</li>
+                <li>Ydsfsdf Nature</li>
+            </ul>
+        </div>
+    </div>
+    <div class="third">
+        <h2>Service and Charges</h2>
+        <ul>
+            <li>Arrangement Good of front floor</li>
+            <li>Welcome Intersting with garland</li>
+            <li>Nature Welcoming</li>
+        </ul>
+    </div>
+</body>
+
+</html>
