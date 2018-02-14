@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>file</title>
+	<style type="text/css">
+		.colorDiv{
+			border: 2px solid #333;
+			background-color: #eeddaa;
+			padding: 20px;
+			font-size: 1.5em;
+			display: inline-block;
+		}
+	</style>
+</head>
+
+<body>
+
+<div>
+	<label for="filesRes">Upload Resume : </label>
+	<input type="file" name="filesRes" id="filesRes">
+</div>
+<br/><br/>
+<button onclick="showDetail()">Show Files Detail.!</button>
+<br/><br/>
+<div id="target">
+	
+</div>
+	<script type="text/javascript">
+		
+		function showDetail(){
+
+			var fileObj = document.getElementById('filesRes').files;
+			var targetDiv = document.getElementById('target');
+			targetDiv.className = 'colorDiv';
+			targetDiv.innerHTML="";
+			console.log(fileObj);
+
+			//targetDiv.innerHTML += fileObj[0].name;
+
+			var fileDetailObj = {			
+				Name: fileObj[0].name,
+				Size: fileObj[0].size/1024000+ "MB",
+				Last_Modified_Date: fileObj[0].lastModifiedDate,
+				Last_Modified_Time: fileObj[0].lastModified,
+				Type: fileObj[0].type.split('/')[1]+" Files"
+			}
+			for(var i in fileDetailObj){
+				targetDiv.innerHTML += "<b>"+i +"</b>    :   <i>"+fileDetailObj[i] +"</i><br/>";
+			}
+			
+		}
+
+	</script>
+</body>
+</html>

@@ -7,15 +7,27 @@
             margin: 10px;
             display: block;
         }
+        
+        .main {
+            margin: 20px 0;
+            display: block;
+        }
+        
+        .mainDiv {
+            border: 2px solid teal;
+            background-color: aqua;
+            display: inline-block;
+        }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
+            var count = 1;
             $("body").on("click", 'p span, div span', function(event) {
                 alert($(event.target).html());
             });
             $('.main').click(function() {
-                $('body .mainDiv').append('<span>new span in div</span>');
+                $('body .mainDiv').append('<span>new span - ' + count++ + ' in div</span>');
             });
         });
     </script>
@@ -28,11 +40,11 @@
         <span>Second span in p</span>
         <span>third span in p</span>
     </p>
-
+    <button class="main">Add New</button>
     <div class="mainDiv">
         <span>I am in div</span>
     </div>
-    <button class="main">Add New</button>
+
 </body>
 
 </html>
