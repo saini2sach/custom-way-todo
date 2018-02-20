@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Name Plate</title>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>	
+	<!-- <style type="text/css" href="D:\xt_supervisor_mapping\src\public\vendor\sapient-font.css"></style> -->
+	<style type="text/css">
+		@media print only{
+			/*.main:nth-of-type(odd){
+				margin-top: 150px;
+			}
+			.main:nth-of-type(1){
+				margin-top: 30px;
+			}*/
+		}
+		@font-face {
+		    font-family: proxiNova;
+		    src: url('D:/Marriott/aries-ui-standards/build/standards/assets/fonts/proxima-nova-regular');
+		}
+		.main{
+			position: relative;
+			margin-top: 50px;
+		}
+		.name {
+			position: absolute;
+			width: 1000px;
+			height: 190px;
+			font-size: 72px;
+			color:#24709d;
+			z-index: 2000;
+			left: 120px;
+			top: 8px;
+			text-align: center;
+			width: 80%;
+			left: 10%;
+			font-family: proxiNova, sans-serif;
+			display: flex;
+    		justify-content: center;
+    		flex-direction: column;
+		}
+		.main:nth-of-type(even){
+			/*margin-top: 170px;*/
+		}
+		/*.main:nth-of-type(odd){
+			margin-top: 150px;
+		}*/
+		.main:nth-of-type(1){
+			margin-top: 0px;
+		}
+
+
+	</style>
+	<script type="text/javascript">
+		$('document').ready(function() {
+			var arr= ["Abhishek Tripathi","Anita Thakur","Vivek Soni","Satnam Singh","Vineet Jain","Sharvan Bhatt","Vikas Dung","Rohit Malhotra","Rohit Nagpal","Gurpreet Singh Bagga","Bhanu Rawat","Gautam Chadha","Anuradha Tiwary","Shilpa Rajora","Shikha Singh","Sunetra Majumdar","Deepak Uppal","Neha Srivastava","Kapil Mediratta","Gaurav Khullar","Nikhaar Suri","Robin Singh","Chander Prakash","Deepak Prakash","Shakti Singh","Sachin Kumar","Vartika Ranjan","Ketaki Pillay","Rahul Chadha","Rakesh Menon","Daksh Khanduri","Nitin Bhatnagar","Abhay Chadha","Aakriti Batra","Deepak Grover","Tanmay Dwivedi","Shubham Agrawal","Prerna Varshney","Varun Jain","Abhishek Vats","Suprita Jain","Oshin Malik","Kota Siddharth","Yogender Kumar","Mayuri Prasad","Vivek Kumar","Mukesh Kumar","Awaneesh Tiwari","Purvi Gupta","Vikrant Garg","VIPUL KUMAR","Nihul Rawat","Harsh Agnihotri","Nishant Prakash","Sumit Gupta","Saurabh Mishra","Mukesh Saini","Manoj Kumar","Arvind Kumar","Vijay Shanker","Neha Awasthi","Dipti Mukhija","Heena Ghai","Praveen Kaujalgikar","Saurabh Vatsal","Parveen","Sahil Bhatia","Manish Malik","Ankit Gautam","Aditya Vashist","Meeraj Ahmed","Pankaj Singh","Avni Garg","Rashmi Pallavi","Anmoljeet Virk","Shariq Parwez","Dhawal Singhal","Ayush Srivastava","Anirudh Vishwanathan","Nikhil Bisht","Anurag Gupta","Pranshu Gupta","Anubhav Rai","Aviral Dixit","Surendra Kumar","Avik Chakraborty","Gaurav Malik","Ankur Agarwal","Prachi Pateriya","Gaurav Lal","Gaurav Puri","Parshant","Vaasu Vemulapalli","Yogesh Sharma","Parinita Jain","Ali Asghar","Vinay Banga","Hitesh Kumar","Chetan Syal","Ketan Mishra","Nitin Sharma","Nitisha Agarwal","Mohit Kumar","Ashutosh Rout","Vivek Anand","Milan Gupta","Simple Wadhwa","Shreya Kapoor","Sumit Rakshit","Tarun Bharti","Govind Singh","Niranjan Prajapati","Ashish Bansal","Abhimanyu Sesodia","Aman Bhattad","Abhijeet Maheshwari","Piyush Gupta","Devesh Tyagi","Ranjan","Amitesh Maurya","Sahil Vig","Anand Singh","Shubham Aggarwal","Sanchit Khandelwal","Tarundeep Arora","Utkarsh Gupta","Dhiraj Chawla","Tanuj Gupta","Vivek Kumar Chaudhary","Sriidhar Ramaswamy","Shruti Saluja","Sachin Manchanda","Aditi Gupta","Abhishek Mishra","Shashank Shandilya","Vineet Kumar","Arjun Narain","Tanya Varma","Abhishek Banthia","Ankit Singh","Sachin Kumar","Sumit Jaiswal","Johny Verma","Mumuksh Meghwal","Shubhankar Misra","Abhiraj Kumar","Ankit Gupta","Sachin Saini","Aakanksha Sharma","Manish Kumar","Debanjan Panja","Tushar Wahal","Vridhi Govind","Kshitij Jain","Yash Singhal","Sakshi Dubey","Chahat Nayar","Ishita Sharma","Priyanka Tomer","Chandrashekhar Singh","Krishna Singh","Ramswroop Kumhar","Divya Prakash Aneja","Savita Pandey","Paturi Reddy","Ashish Parakh","Akash Sharma","Tanuj Mudgal","Humera Zabin","Sahil Manchanda","Anchal Agarwal","Kush Kumar","Nikita Dixit","Vivek Aggarwal","Amit Rawat","Anant Sharma","Apoorv Mangla","Arbind Purbey","Sachin Sharma","Manoj Kumar","Kamal Arora","Deepak Tiwari","Rahul Gupta","Jaipal Singh","Mitesh Passi","Vishal Chawla","Adarsh Srivastava","Tushar Mishra","Varun Goyal","Amit Kumar","Ravindra Yadav","Vipin Gupta","Kanhaya Lal","Ritesh Kumar","Balaji Panda","Piyush Bansal","Varun Tiwari","Prashant Singhal","Meenakshi Gera","Ajay Kumar","Akhil Khanna","Anand Purohit","Karan Arora","Savita Lonial","Umesh Kumar","Kuldeep","Yatish Upadhyaya","Hemen Brahma","Tarun Dawar","Mukesh Batra","Vijay Kundu","Saurabh Ralhan","Ashish Roy","Rakesh Sen","Venu Madhav Somarapu","Gaurav Agarwal","Asheem Srivastava","Shreshtha Dutta","Narayanan K. Ramakrishnan","Arun Khurana","Vishal Verma","Hari Shankar Kumawat","Ashish Gupta","Kumar Ankur","Anamika","Navneet Singh","Richa Mehta","Nitin Malhotra","Gunjan Arora","Mohammed Ansari","Arun Singh Parihar","Sachin Bapna","Anil Raina","Shivi Malviya","Pradeep Singh","Vibhor Kumar","Ashwini Kumar","Jayant Dhingra","Aditya Kar","Kiran","Avinash Goyal","Kavitha Jain","Kamal Arya","Anshu Malini","Sudhir Madaan","Madhu Singh","Sunil Kumar"];
+
+			var newArr= ["Todd Nemoir", "Raj Mohan", "Judy Frey", "Mary Kay Bensen"];
+						
+					$.each(newArr, function( index, value ) {
+						str = '<div class="main"><img src="C:/Users/ssain8/Desktop/Name Plate/asd - Copy (3) - Copy.png"><p class="name">'+value+'</p></div>';
+						$('body').append(str);
+					});
+					//$('body').html(str);
+			})		
+	</script>
+</head>
+<body>
+	
+		
+				
+	
+</body>
+</html>
