@@ -1,0 +1,72 @@
+<html>
+	<head>
+		<title>Basic form</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script>
+			$(document).ready(function() {
+				console.log("Document is ready!");
+				$('.same-checkbox').on('change', handler);
+
+				function handler() {
+					debugger
+					$('.l-receiving-block').find('#receiverName').val($('.l-sender-block').find('#senderName').val());
+					$('.l-receiving-block').find('#receiverPhone').val($('.l-sender-block').find('#senderPhone').val());
+					$('.l-receiving-block').find('#receiverEmail').val($('.l-sender-block').find('#senderEmail').val());
+					$('.l-receiving-block').find('input[type="text"], input[type="email"]').attr('disabled', true);
+				}
+			})
+		</script>		
+	</head>
+	<body class="row justify-content-center">
+		<div class="col-6">
+			<h1>Contact Details</h1>
+			<p>Qantas protects the privacy of your personal information. View our <a href="">Privacy Statement</a></p>
+			<form action="files.html">
+				<div class="l-sender-block">
+					<h3 class="mb-4">Who is sending the freight?</h3>
+					<div class="form-group">
+						<label for="senderName">Name</label>
+						<input type="text" class="form-control" id="senderName" aria-describedby="sender-name" placeholder="">
+					</div>
+					<div class="form-group">
+						<label for="senderPhone">Phone number</label>
+						<input type="text" class="form-control" id="senderPhone" aria-describedby="sender-phone" placeholder="">
+					</div>
+					<div class="form-group">
+						<label for="senderEmail">Email address</label>
+						<input type="email" class="form-control" id="senderEmail" aria-describedby="sender-email" placeholder="">
+					</div>
+				</div>
+				<div class="l-receiving-block mt-4">
+					<h3 class="mb-4">Who is receiving the freight?</h3>
+					<div class="form-check my-3 ml-4">
+						<label class="form-check-label">
+							<input class="form-check-input same-checkbox" type="checkbox" value="">
+							Same as sender
+						</label>
+					</div>
+					<div class="form-group">
+						<label for="receiverName">Name</label>
+						<input type="text" class="form-control" id="receiverName" aria-describedby="receiver-name" placeholder="">
+					</div>
+					<div class="form-group">
+						<label for="receiverPhone">Phone number</label>
+						<input type="text" class="form-control" id="receiverPhone" aria-describedby="receiver-phone" placeholder="">
+					</div>
+					<div class="form-group">
+						<label for="receiverEmail">Email address</label>
+						<input type="email" class="form-control" id="receiverEmail" aria-describedby="receiver-email" placeholder="">
+					</div>
+				</div>
+				<div class="form-check my-3 ml-4">
+					<label class="form-check-label">
+						<input class="form-check-input" type="checkbox" value="">
+						This freight is for business purposes
+					</label>
+				</div>
+				<button type="submit" class="btn btn-primary col-12 mt-4">Continue</button>
+			</form>
+		</div>
+	</body>
+</html>
