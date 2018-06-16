@@ -131,3 +131,12 @@ function bouncingBall(h,  bounce,  window) {
   return count;
   
 }
+
+<div class="sidebar">
+<textarea></textarea>
+</div> 
+
+
+$('.sidebar').on( 'keypress' , 'textarea:last-of-type' , function(e){
+        $(this).after('<textarea placeholder="Tool Name" />') 
+});

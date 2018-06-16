@@ -1,17 +1,17 @@
 
 
-// function outer() {
-//     var sum = 0;
+function outer() {
+    var sum = 0;
 
-//     function inner(param) {
-//         return sum + param;
-//     }
-//     return inner;
-// }
+    function inner(param) {
+        return sum + param;
+    }
+    return inner;
+}
 
-// var sum = outer();
+var sum = outer();
 
-// var total = sum(2)(3);
+//var total = sum(2)(3);
 
 // console.log(total);
 
@@ -44,7 +44,28 @@ function sum() {
 // }
 
 
-var finalTotal1 = sum(1)(8)(5);
-var finalTotal2 = sum(1,4, 5);
+// var finalTotal1 = sum(1)(8)(5);
+// var finalTotal2 = sum(1,4, 5);
 
- console.log(finalTotal1 +',,,'+ finalTotal2 );
+//  console.log(finalTotal1 +',,,'+ finalTotal2 );
+
+// Currying function
+
+function curry(fn) {
+    var arity = fn.length; // check the arity of the given function
+    var args = [];  // store all arguments here
+    function curried() { // the curried function
+      args = args.concat(Array.prototype.slice.call(arguments));
+      if (arity <= args.length) {
+        return fn.apply(null, args); // call the function with all the arguments
+      }
+      return curried; // otherwise return the curried function to be given more arguments
+    }
+    return curried;
+  }
+
+var add = function(a,b,c) {
+    return a+b+c;
+}
+
+console.log(curry(add)(1)(5)(4));
