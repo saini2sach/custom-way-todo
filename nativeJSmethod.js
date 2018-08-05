@@ -157,3 +157,22 @@ var passed = [12, 5, 8, 130, 44].mySome(function(element) {
     return (element >= 100);
 });
 console.log('some: ' + passed); //some: true
+
+
+function bbbb(abc) {
+	var v= {};
+	v.a = abc;
+	return v;
+}
+
+Object.prototype.myNewObj = function(passedPropp){
+    var newObj = {};
+    newObj.propp = passedPropp;
+    return newObj;
+}
+
+Object.prototype.mycreate = function(abc) {
+	function a(){};
+	a.prototype = abc;
+	return new a();
+}

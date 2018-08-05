@@ -68,4 +68,17 @@ var add = function(a,b,c) {
     return a+b+c;
 }
 
+//let summ = a => b => !b ? a : summ(a+b);
+
+function summ(a) {
+	return function(b) {
+		if(!b) {
+			return a;
+		}
+		else {
+			return summ(a+b);
+		}
+	}
+}
+
 console.log(curry(add)(1)(5)(4));

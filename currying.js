@@ -41,3 +41,14 @@ var makeCurry = function(fn){
     return fn.apply(null, args);
   };
 };
+
+function summ(a) {
+	return function(b) {
+		if(!b) {
+			return a;
+		}
+		else {
+			return summ(a+b);
+		}
+	}
+}
