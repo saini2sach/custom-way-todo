@@ -1,0 +1,98 @@
+<html>
+    <head>
+        <title>Input OTP design</title>
+    </head>
+    <style>
+        .main {
+            width: 50%;
+            margin: 0 auto;
+            margin-top: 10%;
+        }
+        h3 {
+            text-align: center;
+        }
+        .example {
+            border: 2px solid grey;
+            padding: 32px;
+            margin: 20px;
+            position: relative;
+            height: 40px;
+        }
+        .my-input {
+            height: 41px;
+            width: 300px;
+            /* border: 1px solid green; */
+            z-index: 2;
+            padding: 0;
+            margin: 0;
+            position: absolute;
+            top: 32px;
+            left: 130px;
+            letter-spacing: 35px;
+            font-size: 24px;
+            border: 0;
+            background-color: transparent;
+            margin-left: 21px;
+        }
+        .my-input:focus {
+            outline: none;
+        }
+        .box-wrapper {
+            position: absolute;
+            /* border: 1px solid red; */
+            top: 32px;
+            left: 130px;
+            height: 40px;
+        }
+        .box-wrapper span {
+            height: 40px;
+            width: 48px;
+            border: 1px solid #888;
+            display: inline-block;
+            z-index: 4;
+        }
+        .box-wrapper span:not(:first-child) {
+            border-left: 0;
+        }
+        .no-cursor {
+            color: transparent;
+            text-shadow: 0 0 0 black;
+        }
+    </style>
+    <script>
+        function checkEnteredVal(event) {
+            var allowKeyArr = ['Backspace', 'Meta', 'Enter'];
+            var regexNum = /([0-9])+/;
+            var val = event.keyCode;
+            var allowedKey = [];
+            if( (val > 96 && val < 123) || (val > 64 && val < 91) || (val == 32)) {
+                return false;
+            }
+            else 
+                return true;
+        }
+        function handleChange(event) {
+            var obj = event.target;
+            var isAllowed = checkEnteredVal(event);
+            if(!isAllowed) {
+                event.preventDefault();
+            }
+            if(obj.value.length >= 6) {
+                obj.classList.add('no-cursor');
+            }
+            else {
+                obj.classList.remove('no-cursor');
+            }
+        }
+        1
+    </script>
+    <body>
+        <div class="main">
+            <h3>Enter the OTP : </h3>
+            <section class="example">
+                <input type="text" id="inputText" class="my-input" maxlength="6" onkeydown="handleChange(event)">
+                <div class="box-wrapper"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+            </section>
+        </div>
+    </body>
+</html>
