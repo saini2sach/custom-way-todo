@@ -36,4 +36,6 @@ console.log(myFunc(add, 1, 2, 3));
 
 
 const mul = (...args) => (args.length > 1) ? args.reduce((acc, item) => acc*item, 1) : (b) => (c) => args[0]*b*c;
-console.log(mul(2,3,4) +'||'+ mul(2,3,4));
+console.log(mul(2,3,4) +'||'+ mul(2)(3)(4));
+
+
