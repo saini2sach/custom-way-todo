@@ -1,0 +1,129 @@
+<html>
+
+<head>
+	<title>JSON to CSV</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<style>
+        .h-table {
+            display: block !important;
+            overflow: auto;
+        }
+        .l-display-none {
+            display: none;
+        }
+	</style>
+	<script>
+		$(document).ready(function () {
+			$('.submit-btn').on('click', convertCSV);
+		});
+
+        function toggleVerticalTable() {
+            $('.v-table').toggle();            
+            $('.h-btn').toggleClass('btn-secondary btn-success');     
+            $('.v-btn').toggleClass('btn-secondary btn-success');     
+        }
+
+		function convertCSV() {
+			var template = $('#inputHbs').html();
+			var templateScript = Handlebars.compile(template);
+			var inputJSON = $('#inputTextbox').val();
+			try {
+				var inputObject = JSON.parse(inputJSON);
+                var myfinalObj = flattenObject(inputObject);
+                var context = {
+                    "data": myfinalObj
+                }
+
+                var compiledHtml = templateScript(context);
+                $('.js-target').html(compiledHtml);
+                $('.v-btn, .h-btn').on('click', toggleVerticalTable);
+			} catch (e) {
+				if (e instanceof SyntaxError) {
+					alert("Please check your JSON, the Syntax seems incorrect!");
+				}
+			}			
+		}
+
+		function flattenObject(inputObj, name, item) {
+			var output = {};
+			var newitem = (typeof item !== 'undefined' && item !== '') ? item + '_' + name : name;
+
+			if (typeof inputObj !== 'object') {
+				output[newitem] = inputObj;
+				return output;
+			}
+
+			for (var p in inputObj) {
+				var prop = flattenObject(inputObj[p], p, newitem);
+				output = joinProp([output, prop]);
+			}
+
+			return output;
+		};
+
+		function joinProp(objects) {
+			var output = {};
+
+			for (var i = 0; i < objects.length; i++) {
+				for (var p in objects[i]) {
+					output[p] = objects[i][p];
+				}
+			}
+
+			return output;
+		}
+
+	</script>
+
+</head>
+
+<body class="row justify-content-center">
+	<div class="col-10">
+		<h1>Welcome to JSON -- CSV convertor</h1>
+		<div class="form-group">
+			<label for="inputTextbox">Input your JSON into the below box:</label>
+			<textarea class="form-control" id="inputTextbox" rows="5" placeholder="Enter here..."></textarea>
+		</div>
+		<button type="button" class="btn btn-primary submit-btn col-12">Convert</button>
+
+		<script id="inputHbs" type="text/x-handlebars-template">
+            <h3 class="my-4 d-inline-block">CSV table:</h3>
+            <div class="form-check d-inline-block mt-4 float-right">
+		        <button type="button" class="btn btn-secondary h-btn">Horizontal Table</button>                
+            </div>
+            <div class="form-check d-inline-block mt-4 float-right mr-4">
+		        <button type="button" class="btn btn-success v-btn">Vertical Table</button>     
+            </div>
+            <div>
+                <table class="table table-hover table-bordered v-table">                    
+                    <tbody>
+                        {{#each data}}
+                            <tr>
+                                <th>{{@key}}</th>
+                                <td>{{this}}</td>
+                            </tr>                            
+                        {{/each}}
+                    </tbody>
+                </table>
+                <table class="table table-hover table-bordered l-display-none h-table">                    
+                    <thead>
+                        {{#each data}}
+                            <th>{{@key}}</th>
+                        {{/each}}
+                    </thead>
+                    <tbody>
+                        {{#each data}}
+                            <td>{{this}}</td>
+                        {{/each}}
+                    </tbody>
+                </table>                
+            </div>
+        </script>
+
+		<div class="js-target mt-4"></div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+<html>
+    <head>
+        <title>Center Div Middle</title>
+        <style>
+            .child {
+                height: 200px;
+                width: 200px;
+                border: 2px solid green;
+                transform: translate(50%, 50%);
+                transform-origin: center;
+                box-sizing: border-box;
+            }
+            .parent {
+                border: 1px solid red;
+                height: 100%;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            body {
+                margin: 0;
+            }
+            .center-margin-auto {
+                position: absolute;
+                top: 0;
+                left: 0;
+                margin: auto;
+                bottom: 0;
+                right: 0;
+                height: 200px;
+                width: 200px;
+                border: 2px solid green;
+            }
+            .center-abs-pos-top-left {
+                position: absolute;
+                top: calc(50% - 100px);
+                left: calc(50% - 100px);
+                height: 200px;
+                width: 200px;
+                border: 2px solid green;
+            }
+            .parent-relative {
+                position: relative;
+            }
+            .child-abs-unknown-width {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            .flex-center {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+            }
+            .child-flex {
+                border: 1px solid teal;
+            }
+            .nav-bar {
+                background-color:#176771;
+                color: #ffffff;
+                height: 60px;
+                position: fixed;
+                width: 100%;
+                box-shadow: 0 0 2px 2px #d2d2d2;
+                z-index: 1;
+            }
+        </style>
+    </head>
+    <body onload="callThis()">
+        <div class="nav-bar"></div>
+        <div class="center-margin-auto"></div>
+        <div class="center-abs-pos-top-left"></div>
+        <div class="parent-relative parent">
+            <div class="child-abs-unknown-width">
+                <p>I am a centered div from horizontal and vertical, with unknown height and width.</p>
+                <p>I am a centered div from horizontal and vertical, with unknown height and width.</p>
+                <p>I am a centered div from horizontal and vertical, with unknown height and width.</p>
+                <p>I am a centered div from horizontal and vertical, with unknown height and width.</p>
+                <p>I am a centered div from horizontal and vertical, with unknown height and width.</p>
+                <p>I am a centered div from horizontal and vertical, with unknown height and width.</p>
+                <p>I am a centered div from horizontal and vertical, with unknown height and width.</p>
+                <p>I am a centered div from horizontal and vertical, with unknown height and width.</p>
+            </div>
+        </div>
+        <div class="flex-center">
+            <div class="child-flex">
+                <p>I am a centered div from horizontal and vertical, with unknown height and width.</p>
+                <p>I am a centered div from horizontal and vertical, with unknown height and width.</p>
+                <p>I am a centered div from horizontal and vertical, with unknown height and width.</p>
+                <p>I am a centered div from horizontal and vertical, with unknown height and width.</p>
+                <p>I am a centered div from horizontal and vertical, with unknown height and width.</p>
+                <p>I am a centered div from horizontal and vertical, with unknown height and width.</p>
+                <p>I am a centered div from horizontal and vertical, with unknown height and width.</p>
+                <p>I am a centered div from horizontal and vertical, with unknown height and width.</p>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,63 @@
+<html>
+
+<head>
+    <title>Checkbox extended</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+        .main div {
+            margin: 16px 10px;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            console.log("Ready!");
+            $('.main').find('.js-radio').on('change', handleCheckbox);
+
+            function handleCheckbox(event) {
+                debugger
+                var currentElem = $(event.target);
+                var groupPairName = currentElem.attr("name");
+                var groupElem = $('.js-radio').find('input[name='+groupPairName+']');
+
+                if((groupElem).is(':checked')) {
+                    groupElem.prop('checked', false);
+                    currentElem.prop('checked', true);
+                }
+            }
+        })
+    </script>
+
+</head>
+
+<body>
+    <div class="main">
+        <h3>Select your Preferences!</h3>
+
+        <div class="js-radio">
+            <input type="checkbox" name="group1" value="gp1" id="gp1" />
+            <label for="gp1">1 King Beds</label>
+        </div>
+        <div class="js-radio">
+            <input type="checkbox" name="group1" value="gp2" id="gp2" />
+            <label for="gp2">Near Elevator</label>
+        </div>
+        <div class="js-radio">
+            <input type="checkbox" name="group1" value="gp3" id="gp3" />
+            <label for="gp3">Balcony</label>
+        </div>
+        <div>
+            <input type="checkbox" name="group2" value="gp4" id="gp4" />
+            <label for="gp4">Sofa Bed</label>
+        </div>
+        <div class="js-radio">
+            <input type="checkbox" name="group3" value="gp5" id="gp5" />
+            <label for="gp5">Low Floor</label>
+        </div>
+        <div class="js-radio">
+            <input type="checkbox" name="group3" value="gp6" id="gp6" />
+            <label for="gp6">High Floor</label>
+        </div>
+    </div>
+</body>
+
+</html>

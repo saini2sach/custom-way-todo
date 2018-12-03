@@ -1,0 +1,158 @@
+<html>
+
+<head>
+	<title>JSON to CSV</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<style>
+	</style>
+	<script>
+		$(document).ready(function () {
+			// Retrieve the template data from the HTML (jQuery is used here).
+
+			Handlebars.registerHelper("typeCheck", function (conditional, options) {
+				if (options.hash.desired === options.hash.type) {
+					options.fn(this);
+				} else {
+					options.inverse(this);
+				}
+			});
+			$('.submit-btn').on('click', convertCSV);
+
+			finalObj = {};
+		});
+
+		function convertCSV() {
+			var template = $('#handlebars-demo').html();
+			var templateScript = Handlebars.compile(template);
+			//console.log($('#inputTextbox').val());
+			var inputJSON = $('#inputTextbox').val();
+			try {
+				var inputObject = JSON.parse(inputJSON);
+			} catch (e) {
+				if (e instanceof SyntaxError) {
+					alert("Please check your JSON, it seems incorrect!");
+				}
+			}
+
+			//convertDeepObjectToSimpleObj(inputObject);
+
+			var myfinalObj = flatten(inputObject);
+
+			var context = {
+				"data": myfinalObj
+			}
+			console.log(myfinalObj);
+
+			//var context = { "data": { "name": "Ritesh Kumar", "occupation": "developer" } };
+
+			var compiledHtml = templateScript(context);
+			$('.js-target').html(compiledHtml);
+		}
+
+		function convertDeepObjectToSimpleObj(mainObj) {
+			var tempObj = Object.assign({}, mainObj);
+
+
+			iterateObject(tempObj, '');
+		}
+
+		function iterateObject(obj, genericProp) {
+			for (var prop in obj) {
+				if (obj.hasOwnProperty(prop)) {
+					if (Array.isArray(obj[prop])) {
+
+					}
+					else if (isObject(obj[prop])) {
+						iterateObject(obj[prop], prop + '__');
+					}
+					else {
+						finalObj[genericProp + prop] = obj[prop];
+					}
+				}
+			}
+		}
+
+		function flatten(obj, name, stem) {
+			var out = {};
+			var newStem = (typeof stem !== 'undefined' && stem !== '') ? stem + '_' + name : name;
+
+			if (typeof obj !== 'object') {
+				out[newStem] = obj;
+				return out;
+			}
+
+			for (var p in obj) {
+				var prop = flatten(obj[p], p, newStem);
+				out = merge([out, prop]);
+			}
+
+			return out;
+		};
+
+		function merge(objects) {
+			var out = {};
+
+			for (var i = 0; i < objects.length; i++) {
+				for (var p in objects[i]) {
+					out[p] = objects[i][p];
+				}
+			}
+
+			return out;
+		}
+		// Returns if a value is an object
+		function isObject(value) {
+			return value && typeof value === 'object' && value.constructor === Object;
+		};
+
+	</script>
+
+</head>
+
+<body class="row justify-content-center">
+	<div class="col-10">
+		<h1>Welcome to JSON -- CSV convertor</h1>
+		<div class="form-group">
+			<label for="inputTextbox">Input your JSON into the below box:</label>
+			<textarea class="form-control" id="inputTextbox" rows="5" placeholder="Enter here..."></textarea>
+		</div>
+		<button type="submit" class="btn btn-primary submit-btn col-12">Convert</button>
+
+		<script id="handlebars-demo" type="text/x-handlebars-template">
+			<h3 class="my-4">CSV:</h3>
+            <div>
+                <table class="table table-sm table-hover table-bordered">
+                    <thead>
+                        {{#each data}}
+                            <th>{{@key}}</th>
+                        {{/each}}
+                    </thead>
+                    <tbody>
+                        {{#each data}}
+                            <th>{{this}}</th>
+                        {{/each}}
+                    </tbody>
+                </table>                
+            </div>
+        </script>
+
+		<div class="js-target mt-4"></div>
+	</div>
+</body>
+
+</html>
+<!-- 
+var template = $('#handlebars-demo').html();
+
+Compile the template data into a function
+var templateScript = Handlebars.compile(template);
+
+var context = { "data": { "name": "Ritesh Kumar", "occupation": "developer" } };
+
+html = 'My name is Ritesh Kumar. I am a developer.'
+var compiledHtml = templateScript(context);
+
+Insert the HTML code into the page
+$('.js-target').html(compiledHtml); -->

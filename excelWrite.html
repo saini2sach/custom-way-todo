@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            //fileReadAndWrite();
+        });
+
+        function fileReadAndWrite() {
+            var fileName = "C:/Users/ssain8/Desktop/test.xlsx";
+            var sheetName = "Sheet1";
+            var app = Sys.OleObject("Excel.Application");
+
+            app.Visible = "True";
+            var book = app.Workbooks.Open(fileName);
+
+            var sheet = book.Sheets(sheetName);
+
+            rowCount = app.ActiveSheet.UsedRange.Rows.Count + 1;
+            colCount = 1;
+
+            sheet.Cells(1, 1) = "test";
+        }
+        function ReadDataFromExcel() {
+            let Excel = getActiveXObject("Excel.Application");
+            Excel.Workbooks.Open("C:/Users/ssain8/Desktop/test.xlsx");
+
+            let RowCount = Excel.ActiveSheet.UsedRange.Rows.Count;
+            let ColumnCount = Excel.ActiveSheet.UsedRange.Columns.Count;
+
+            for (let i = 1; i <= RowCount; i++)
+            {
+                let s = "";
+                for (let j = 1; j <= ColumnCount; j++)
+                s += (VarToString(Excel.Cells.Item(i, j)) + "\r\n");
+                Log.Message("Row: " + i, s);
+            }
+
+            Excel.Quit();
+        }
+    </script>
+</head>
+
+<body>
+    <button onclick="ReadDataFromExcel()">Click me</button>
+
+</body>
+
+</html>
